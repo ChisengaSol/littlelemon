@@ -9,40 +9,12 @@ from .models import Menu,Booking
 from .serializers import MenuSerializer,BookingSerializer
 
 # Create your views here.
-def menu(request):
-    menu_data = Menu.objects.all()
-    main_data = {"menu":menu_data}
-    return render(request,'menu.html',main_data)
-
 def index(request):
     return render(request, 'index.html', {})
 
 def home(request):
     return render(request, 'index.html', {})
 
-# class BookingView(APIView):
-#     def get(self,request):
-#         items = Booking.objects.all()
-#         serializer = bookingSerializer(items,many=True)
-#         return Response(serializer.data) #return JSON
-
-#     def post(self,request):
-#         serializer = bookingSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({"status":"success","data":serializer.data})
-
-# class MenuItemView(APIView):
-#     def get(self,request):
-#         items = Menu.objects.all()
-#         serializer = menuSerializer(items,many=True)
-#         return Response(serializer.data) #return JSON
-
-#     def post(self,request):
-#         serializer = menuSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response({"status":"success","data":serializer.data})
 class MenuItemsView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Menu.objects.all()
@@ -57,3 +29,8 @@ class BookingViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+
+# class SingleBookingView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+#     permission_classes = [IsAuthenticated]
+#     queryset = Booking.objects.all()
+#     serializer_class = MenuSerializer

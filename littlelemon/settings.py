@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': env("DATABASE_ENGINE"),
         'NAME': env("DATABASE_NAME"),  
         'USER': env("DATABASE_USER"), 
         'PASSWORD': env("DATABASE_PASSWORD"),  
