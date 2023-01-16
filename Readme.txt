@@ -1,3 +1,5 @@
+API endpoints
+=============
 /restaurant/
 /restaurant/booking/
 /restaurant/booking/tables/
